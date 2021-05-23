@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +17,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::group(["middleware" => "api"], function () {
+    Route::post('/login', 'Auth\LoginController@login');
+    Route::get('/current_admin_user', function () {
+        return Auth::user();
+    });
+    Route::group(['middleware' => ['auth:api']], function () {
+        Route::apiResource('admin_users', 'Api\AdminUserController')->except(['show']);
+    });
 });
