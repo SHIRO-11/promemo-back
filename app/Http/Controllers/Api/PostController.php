@@ -29,6 +29,7 @@ class PostController extends Controller
         $post = new Post;
         $post->title = $request->title;
         $post->content = $request->content;
+        $post->user_id = 1;
         $post->save();
         return $post;
     }
