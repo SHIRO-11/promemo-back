@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +19,11 @@ Route::get('/', function () {
 
 Route::get('/', function (){
     return 'piyopiyo';
+});
+
+Route::get('/user', function (){
+    Log::debug(Auth::user());
+    return Auth::user();
 });
 
 // Auth::routes();
