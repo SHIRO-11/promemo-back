@@ -20,6 +20,7 @@ Route::get('/', function () {
 Route::get('/', function (){
     return 'piyopiyo';
 });
-Auth::routes();
+
+// Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
