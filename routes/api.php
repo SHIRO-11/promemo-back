@@ -24,8 +24,10 @@ Route::group(["middleware" => "admin"], function () {
     Route::get('/current_admin_user', function () {
         return Auth::guard('admin')->user();
     });
+
     Route::group(['middleware' => ['auth:admin']], function () {
         Route::apiResource('admin_users', 'Api\AdminUserController')->except(['show']);
     });
+    
     Route::resource('/posts', 'Api\PostController');
 });
