@@ -25,14 +25,18 @@ class PostController extends Controller
         $post->user_id = Auth::guard('sanctum')->user()->id;
         $post->save();
         return response()->json([
-            'title'=>$post->title,
-            'content'=>$post->content,
+            'title' => $post->title,
+            'content' => $post->content,
         ]);
     }
 
     public function show($id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        return response()->json([
+            'post' => $post
+        ]);
     }
 
     public function update(Request $request, $id)
@@ -46,7 +50,7 @@ class PostController extends Controller
 
     public function destroy($id)
     {
-        $post =Post::find($id);
+        $post = Post::find($id);
         $post->delete();
         return $post;
     }
