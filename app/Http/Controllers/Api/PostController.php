@@ -17,16 +17,13 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        Log::debug(Auth::guard('sanctum')->user()->id);
-
         $post = new Post;
         $post->title = $request->title;
         $post->content = $request->content;
         $post->user_id = Auth::guard('sanctum')->user()->id;
         $post->save();
         return response()->json([
-            'title' => $post->title,
-            'content' => $post->content,
+            'post'=>$post
         ]);
     }
 
