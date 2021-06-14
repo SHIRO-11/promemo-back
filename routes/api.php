@@ -28,6 +28,9 @@ Route::group(["middleware" => "admin"], function () {
     Route::group(['middleware' => ['auth:admin']], function () {
         Route::apiResource('admin_users', 'Api\AdminUserController')->except(['show']);
     });
-    
-    Route::resource('/posts', 'Api\PostController');
+
 });
+
+Route::resource('/categories', 'Api\CategoryController');
+Route::resource('/posts', 'Api\PostController');
+
