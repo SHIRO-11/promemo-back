@@ -16,6 +16,7 @@ class PostFactory extends Factory
             'title'=>'ダミーデータです。',
             'content'=>'ダミーデータ。ダミーデータ。ダミーデータ。ダミーデータ。',
             'user_id'=>1,
+            'category_id'=>1,
         ];
     }
 }
