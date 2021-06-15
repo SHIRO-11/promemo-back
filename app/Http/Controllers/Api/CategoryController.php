@@ -11,8 +11,6 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
-        Log::debug($categories);
         return Category::all();
     }
 

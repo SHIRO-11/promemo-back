@@ -18,6 +18,6 @@ class DatabaseSeeder extends Seeder
             CategorySeed::class,
         ]);
         \App\Models\User::factory(10)->create();
-        \App\Post::factory(10)->create();
+        \App\Models\Post::factory(10)->create();
     }
 }

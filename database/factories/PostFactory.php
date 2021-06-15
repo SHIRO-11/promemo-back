@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Post;
+use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PostFactory extends Factory
@@ -16,7 +16,6 @@ class PostFactory extends Factory
             'title'=>'ダミーデータです。',
             'content'=>'ダミーデータ。ダミーデータ。ダミーデータ。ダミーデータ。',
             'user_id'=>1,
-            'category_id'=>1,
         ];
     }
 }
