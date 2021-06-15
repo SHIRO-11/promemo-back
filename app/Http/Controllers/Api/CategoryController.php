@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Log;
 
 class CategoryController extends Controller
 {
     public function index()
     {
+        $categories = Category::all();
+        Log::debug($categories);
         return Category::all();
     }
 

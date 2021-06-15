@@ -33,26 +33,6 @@ class UserSeeder extends Seeder
             ]
         ]);
 
-        //カテゴリー
-        DB::table('categories')->insert([
-            [
-            'name' => 'sample_category1',
-            ],
-            [
-            'name' => 'sample_category2',
-            ],
-            [
-            'name' => 'sample_category3',
-            ],
-            [
-            'name' => 'sample_category4',
-            ],
-            [
-            'name' => 'sample_category5',
-            ]
-        ]);
-        
-
         \App\Models\User::factory(10)->create();
     }
 }
