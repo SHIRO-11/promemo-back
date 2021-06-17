@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\PostCategory;
 use Log;
 use Auth;
 
@@ -67,5 +68,16 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->delete();
         return $post;
+    }
+
+    public function myMemo()
+    {
+        $auth = Auth::user();
+        // $memo = $auth->posts()->with('categories')->pluck('posts.categories.id');
+        // $myCategories = Category::
+        $postIds = $auth->posts()->pluck('id');
+        $categoryId = PostCategory::whereIn('post_id', $postIds)->pluck('category_id')->unique()->values()->all();
+        $myCategory = Category::whereIn('id', $categoryId)->with('posts')->get();
+        return $myCategory;
     }
 }
