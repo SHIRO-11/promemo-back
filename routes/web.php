@@ -17,12 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/', function (){
+Route::get('/', function () {
     return 'piyopiyo';
 });
 
-Route::get('/user', function (){
-    Log::debug(Auth::user());
+Route::get('/user', function () {
     return Auth::user();
 });
 
