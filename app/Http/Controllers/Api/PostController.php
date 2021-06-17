@@ -18,8 +18,6 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        Log::debug($request);
-
         $post = new Post;
         $post->title = $request->title;
         $post->content = $request->content;
@@ -29,7 +27,7 @@ class PostController extends Controller
         $post->categories()->sync($request->categories);
 
         return response()->json([
-            'post'=>$post
+            'post' => $post
         ]);
     }
 
@@ -48,7 +46,7 @@ class PostController extends Controller
 
         return response()->json([
             'post' => $post,
-            'categories'=>$post->categories()->pluck('categories.id')
+            'categories' => $post->categories()->pluck('categories.id')
         ]);
     }
 
