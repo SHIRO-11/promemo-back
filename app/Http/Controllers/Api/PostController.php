@@ -14,7 +14,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        return Post::all();
+        return Post::with("categories")->get();
     }
 
     public function store(Request $request)
