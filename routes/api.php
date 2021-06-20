@@ -38,3 +38,4 @@ Route::group(["middleware" => "admin"], function () {
 
 Route::resource('/categories', 'Api\CategoryController');
 Route::resource('/posts', 'Api\PostController');
+Route::resource('/users', 'Api\UserController');
