@@ -16,14 +16,20 @@ class CategorySeed extends Seeder
     {
         DB::table('categories')->insert([
             [
-                'name'=>'HTML'
+                'name' => 'HTML'
             ],
             [
-                'name'=>'CSS'
+                'name' => 'CSS'
             ],
             [
-                'name'=>'PHP'
-            ]
+                'name' => 'PHP'
+            ],
+            [
+                'name' => 'Ruby'
+            ],
+            [
+                'name' => 'Python'
+            ],
         ]);
     }
 }
