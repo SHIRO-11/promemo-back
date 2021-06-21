@@ -17,6 +17,7 @@ class CreatePostCategoryTable extends Migration
             $table->id();
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('post_id');
+            $table->integer('order_number');
             $table->foreign('post_id')->references('id')->on('posts');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
