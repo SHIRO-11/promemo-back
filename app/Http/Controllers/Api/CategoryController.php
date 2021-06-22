@@ -5,13 +5,15 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\CategoryColor;
 use Log;
+use Auth;
 
 class CategoryController extends Controller
 {
     public function index()
     {
-        return Category::all();
+        return Category::with('category_color')->get();
     }
 
     public function store(Request $request)
@@ -20,7 +22,7 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->save();
         return response()->json([
-            'category'=>$category
+            'category' => $category
         ]);
     }
 
@@ -45,5 +47,24 @@ class CategoryController extends Controller
         $category = category::find($id);
         $category->delete();
         return $category;
+    }
+
+    public function changeCategorColor(Request $request)
+    {
+        $categoryColor = CategoryColor::where('category_id', $request->categoryId)->where('user_id', Auth::guard('sanctum')->id())->first();
+
+        if ($categoryColor) {
+            $categoryColor->update([
+                'color_name' => $request->colorName,
+            ]);
+        } else {
+            $categoryColor = CategoryColor::create([
+                'user_id' => Auth::guard('sanctum')->id(),
+                'category_id' => $request->categoryId,
+                'color_name' => $request->colorName,
+            ]);
+        }
+
+        return Category::with('category_color')->get();
     }
 }
