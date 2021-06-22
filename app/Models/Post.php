@@ -9,9 +9,11 @@ class Post extends Model
 {
     use HasFactory;
 
-    public function categories()
+    protected $fillable = ['order_number_in_category', 'category_id'];
+
+    public function category()
     {
-        return $this->belongsToMany(Category::class, 'post_category');
+        return $this->belongsTo(Category::class);
     }
 
     public function user()
