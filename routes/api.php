@@ -25,6 +25,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/updateCategoryOrderNumber', 'Api\PostController@updateCategoryOrderNumber');
     Route::post('/updateUserName', 'Api\UserController@updateUserName');
     Route::post('/updateUserEmail', 'Api\UserController@updateUserEmail');
+    Route::post('/changeCategorColor', 'Api\CategoryController@changeCategorColor');
 });
 
 Route::group(["middleware" => "admin"], function () {

@@ -16,7 +16,7 @@ class PostController extends Controller
 
     public function index()
     {
-        return Post::with("category")->get();
+        return Post::with("category.category_color",)->get();
     }
 
     public function store(Request $request)
@@ -31,7 +31,7 @@ class PostController extends Controller
         $post->content = $request->content;
         $post->user_id = $auth->id;
         $post->category_id = $request->category;
-        $post->order_number_in_category = $hasPostCategoryNum++;
+        $post->order_number_in_category = $hasPostCategoryNum + 1;
         $post->save();
 
         $alreadyHasCategory = CategoryOrder::where('user_id', $auth->id)->where('category_id', $request->category)->first();
@@ -41,7 +41,7 @@ class PostController extends Controller
             CategoryOrder::create([
                 'user_id' => $auth->id,
                 'category_id' => $request->category,
-                'order_number' => $hasCategoryNum++,
+                'order_number' => $hasCategoryNum + 1,
             ]);
         }
 
@@ -119,7 +119,7 @@ class PostController extends Controller
 
         $myCategory = Category::whereIn('id', $categoryId)->orderByRaw("FIELD(id, $placeholder)", $categoryId)->with(['posts' => function ($query) {
             $query->where('user_id', Auth::guard('sanctum')->user()->id)->orderBy('order_number_in_category', 'asc');
-        }])->get();
+        }])->with('category_color')->get();
         return $myCategory;
     }
 

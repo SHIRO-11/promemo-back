@@ -16,19 +16,24 @@ class CategorySeed extends Seeder
     {
         DB::table('categories')->insert([
             [
-                'name' => 'HTML'
+                'name' => 'HTML',
+                'default_color_name' => 'orange1'
             ],
             [
-                'name' => 'CSS'
+                'name' => 'CSS',
+                'default_color_name' => 'orange2'
             ],
             [
-                'name' => 'PHP'
+                'name' => 'PHP',
+                'default_color_name' => 'blue1'
             ],
             [
-                'name' => 'Ruby'
+                'name' => 'Ruby',
+                'default_color_name' => 'red1'
             ],
             [
-                'name' => 'Python'
+                'name' => 'Python',
+                'default_color_name' => 'yellow1'
             ],
         ]);
     }
