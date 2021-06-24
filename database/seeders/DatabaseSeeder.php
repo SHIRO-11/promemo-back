@@ -16,9 +16,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             CategorySeed::class,
+            PostSeeder::class,
+            CategoryOrderSeeder::class,
         ]);
-        \App\Models\User::factory(10)->create();
-        \App\Models\Post::factory(10)->create();
-        \App\Models\CategoryOrder::factory(1)->create();
+        // \App\Models\CategoryOrder::factory(1)->create();
     }
 }
