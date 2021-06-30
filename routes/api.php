@@ -19,6 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return Auth::user();
 });
 
+Route::post('/searchMemo', 'Api\PostController@searchMemo');
+
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/myMemo', 'Api\PostController@myMemo');
     Route::post('/updateOrderNumber', 'Api\PostController@updateOrderNumber');
