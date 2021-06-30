@@ -59,6 +59,14 @@ class PostController extends Controller
         ]);
     }
 
+    public function searchMemo(Request $request){
+        $post = Post::where('title','like','%'.$request->word.'%')->orWhere('content','like','%'.$request->word.'%')->get();
+
+        return response()->json([
+            'post'=>$post,
+        ]);
+    }
+
     public function edit($id)
     {
         $post = Post::findOrFail($id);
