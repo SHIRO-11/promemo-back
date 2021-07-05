@@ -43,7 +43,6 @@ Route::group(["middleware" => "admin"], function () {
 Route::resource('/categories', 'Api\CategoryController');
 Route::resource('/posts', 'Api\PostController');
 Route::resource('/users', 'Api\UserController');
-Route::get('/posts/{post}/check', 'LikeController@check')->name('like.check');
-Route::resource('posts.likes', 'LikeController', [
- 'only' => ['store'],
-]);
+Route::get('/posts/{post?}/firstcheck', 'Api\LikeController@firstcheck')->name('like.firstcheck');
+Route::get('/posts/{post?}/check', 'Api\LikeController@check')->name('like.check');
+Route::resource('comment', 'Api\CommentsController', ['only' => ['store']]);
