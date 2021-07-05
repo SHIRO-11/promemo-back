@@ -27,7 +27,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/updateCategoryOrderNumber', 'Api\PostController@updateCategoryOrderNumber');
     Route::post('/updateUserName', 'Api\UserController@updateUserName');
     Route::post('/updateUserEmail', 'Api\UserController@updateUserEmail');
-    Route::post('/changeCategorColor', 'Api\CategoryController@changeCategorColor');
 });
 
 Route::group(["middleware" => "admin"], function () {
@@ -44,3 +43,6 @@ Route::group(["middleware" => "admin"], function () {
 Route::resource('/categories', 'Api\CategoryController');
 Route::resource('/posts', 'Api\PostController');
 Route::resource('/users', 'Api\UserController');
+Route::get('/posts/{post?}/firstcheck', 'Api\LikeController@firstcheck')->name('like.firstcheck');
+Route::get('/posts/{post?}/check', 'Api\LikeController@check')->name('like.check');
+Route::resource('comment', 'Api\CommentsController', ['only' => ['store']]);
