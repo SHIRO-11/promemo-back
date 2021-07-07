@@ -30,4 +30,8 @@ class Post extends Model
     {
         return $this->likes()->where('user_id', $user_id)->exists();
     }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
 }
