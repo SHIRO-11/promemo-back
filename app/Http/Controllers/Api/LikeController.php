@@ -10,14 +10,16 @@ use Auth;
 
 class LikeController extends Controller{
 
-    //コンポーネント初期読み込み時(created)に呼び出される
     public function firstcheck($post) {
      $auth = Auth::guard('sanctum')->user();
      $likes = new Like();
      $like = Like::where('posts_id',$post)->where('user_id',$auth->id)->first();
      if($like) {
           $count = $likes->where('posts_id',$post)->where('like',1)->count();
-          return [$like->like,$count];
+          return response()->json([
+               'like' => $like->like,
+               'count' => $count
+          ]);
      } else {
           $like = $likes->create([
                'user_id' => $auth->id,
@@ -32,7 +34,6 @@ class LikeController extends Controller{
      }
     }
 
-    //いいねボタンを押した時に呼び出される
     public function check($post) {
      $auth = Auth::guard('sanctum')->user();
      $likes = new Like();

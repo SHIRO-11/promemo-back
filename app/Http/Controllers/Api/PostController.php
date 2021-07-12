@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Like;
 use App\Models\Category;
 use App\Models\CategoryOrder;
 use App\Models\PostCategory;
@@ -16,7 +17,7 @@ class PostController extends Controller
 
     public function index()
     {
-        return Post::with("category.category_color",)->get();
+        return Post::with("category.category_color",)->where("draft",false)->get();
     }
 
     public function store(Request $request)
@@ -29,6 +30,7 @@ class PostController extends Controller
         $post = new Post;
         $post->title = $request->title;
         $post->content = $request->content;
+        $post->draft = $request->draft;
         $post->user_id = $auth->id;
         $post->category_id = $request->category;
         $post->order_number_in_category = $hasPostCategoryNum + 1;
@@ -100,6 +102,7 @@ class PostController extends Controller
         }
         $post->title = $request->title;
         $post->content = $request->content;
+        $post->draft = $request->draft;
         $post->category_id = $request->categoryId;
         $post->save();
 
@@ -182,5 +185,16 @@ class PostController extends Controller
             CategoryOrder::where('user_id', $auth->id)->where('order_number', '>', $oldIndex)->where('order_number', '<=', $newIndex)->where('id', '!=', $category->id)->decrement('order_number');
         }
         return 'あああ';
+    }
+
+    public function draft()
+    {
+        return Post::with("category.category_color")->where('draft',true)->where('user_id',Auth::guard('sanctum')->id())->get();
+    }
+
+    public function good(){
+        return Post::with("likes")->with("category.category_color")->where("draft",false)->whereHas('likes', function($query) {
+            $query->where('user_id', Auth::guard('sanctum')->id());
+        })->get();
     }
 }
