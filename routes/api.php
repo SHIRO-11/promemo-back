@@ -44,6 +44,9 @@ Route::group(["middleware" => "admin"], function () {
 
 Route::resource('/categories', 'Api\CategoryController');
 Route::resource('/posts', 'Api\PostController');
+Route::get('/draft', 'Api\PostController@draft')->name('post.draft');
+Route::get('/good', 'Api\PostController@good')->name('post.good');
+
 Route::resource('/users', 'Api\UserController');
 Route::get('/posts/{post?}/firstcheck', 'Api\LikeController@firstcheck')->name('like.firstcheck');
 Route::get('/posts/{post?}/check', 'Api\LikeController@check')->name('like.check');
