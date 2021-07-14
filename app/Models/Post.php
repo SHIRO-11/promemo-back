@@ -26,12 +26,12 @@ class Post extends Model
     {
         return $this->hasMany(CategoryColor::class)->where('user_id', Auth::guard('sanctum')->id());
     }
-    public function isLiked($user_id)
-    {
-        return $this->likes()->where('user_id', $user_id)->exists();
-    }
 
     public function comments(){
         return $this->hasMany(Comment::class);
+    }
+
+    public function likes(){
+        return $this->hasMany(Like::class)->where('user_id', Auth::guard('sanctum')->id());
     }
 }
