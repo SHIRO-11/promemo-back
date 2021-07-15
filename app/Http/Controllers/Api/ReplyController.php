@@ -4,27 +4,25 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Post;
-use App\Models\Comment;
+use App\Models\Reply;
 use Auth;
 
-class CommentController extends Controller
+class ReplyController extends Controller
 {
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $auth = Auth::guard('sanctum')->user();
 
-        $comment = Comment::create([
-            'post_id' => $request->postId,
+        $reply = Reply::create([
+            'comment_id' => $request->commentId,
             'user_id' => $auth->id,
             'title' => $request->title,
             'content' => $request->content,
         ]);
 
-        $comment = Comment::with('user')->find($comment->id);
+        $reply = Reply::with('user')->find($reply->id);
         
         return response()->json([
-            'comment'=>$comment,
+            'reply'=>$reply,
         ]);
     }
 }
