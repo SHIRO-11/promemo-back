@@ -11,6 +11,7 @@ use Auth;
 class LikeController extends Controller{
 
     public function firstcheck($post) {
+         
      $auth = Auth::guard('sanctum')->user();
      $likes = new Like();
      $like = Like::where('posts_id',$post)->where('user_id',$auth->id)->first();

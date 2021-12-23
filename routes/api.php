@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/updateUserEmail', 'Api\UserController@updateUserEmail');
 
     Route::post('/comment/store', 'Api\CommentController@store');
+    Route::post('/reply/store', 'Api\ReplyController@store');
 });
 
 Route::group(["middleware" => "admin"], function () {
