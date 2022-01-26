@@ -10,12 +10,12 @@ class Like extends Model
     use HasFactory;
 
     protected $fillable = [
-        'posts_id','user_id','like'
+        'post_id','user_id','like'
    ];
 
    public function user()
    {
-       return $this->belongsTo('App\Models\User');
+       return $this->belongsTo(User::class);
    }
 
    public function post()

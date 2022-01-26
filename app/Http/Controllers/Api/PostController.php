@@ -17,7 +17,7 @@ class PostController extends Controller
 
     public function index()
     {
-        return Post::with("category.category_color",)->where("draft",false)->get();
+        return Post::with("category.category_color","likes")->where("draft",false)->get();
     }
 
     public function store(Request $request)
