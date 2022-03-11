@@ -32,7 +32,7 @@ class CategorySeed extends Seeder
                 'default_color_name' => 'red3'
             ],
             [
-                'name' => 'Python',
+                'name' => 'JavaScript',
                 'default_color_name' => 'yellow2'
             ],
         ]);
